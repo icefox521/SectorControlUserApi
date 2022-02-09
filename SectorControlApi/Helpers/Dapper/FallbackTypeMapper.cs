@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using NLog;
 using System.Reflection;
 
 namespace SectorControlApi.Helpers.Dapper
@@ -12,10 +13,12 @@ namespace SectorControlApi.Helpers.Dapper
 	public class FallbackTypeMapper : SqlMapper.ITypeMap
 	{
 		private readonly IEnumerable<SqlMapper.ITypeMap> _mappers;
+		private readonly NLog.ILogger _logger;
 
 		public FallbackTypeMapper(IEnumerable<SqlMapper.ITypeMap> mappers)
 		{
 			_mappers = mappers;
+			_logger = LogManager.GetCurrentClassLogger();
 		}
 
 
@@ -31,8 +34,9 @@ namespace SectorControlApi.Helpers.Dapper
 						return result;
 					}
 				}
-				catch (NotImplementedException)
+				catch (Exception ex)
 				{
+					_logger.Error(ex);
 				}
 			}
 			return null;
@@ -50,8 +54,9 @@ namespace SectorControlApi.Helpers.Dapper
 						return result;
 					}
 				}
-				catch (NotImplementedException)
+				catch (Exception ex)
 				{
+					_logger.Error(ex);
 				}
 			}
 			return null;
@@ -69,8 +74,9 @@ namespace SectorControlApi.Helpers.Dapper
 						return result;
 					}
 				}
-				catch (NotImplementedException)
+				catch (Exception ex)
 				{
+					_logger.Error(ex);
 				}
 			}
 			return null;

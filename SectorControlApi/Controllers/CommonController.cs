@@ -5,6 +5,9 @@ using System.Security.Claims;
 
 namespace SectorControlApi.Controllers
 {
+    /// <summary>
+    /// Controller for generic methods to help during development and debugging.
+    /// </summary>
     [Route("/[action]")]
     public class CommonController : Controller
     {

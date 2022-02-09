@@ -21,6 +21,12 @@ namespace SectorControlApi.Controllers
             _logService = logService;
         }
 
+        /// <summary>
+        /// Creates new player in DB.
+        /// </summary>
+        /// <returns>
+        /// True if user was successfuly created.
+        /// </returns>
         [HttpPost]
         [ActionName("Register")]
         public async Task<bool> RegisterAsync([FromBody]RegisterRequestModel request)
@@ -56,6 +62,12 @@ namespace SectorControlApi.Controllers
             return isSuccess;
         }
 
+        /// <summary>
+        /// Verifies login details for player login.
+        /// </summary>
+        /// <returns>
+        /// Access token. TODO: add timestamp for expiration and createdon.
+        /// </returns>
         [HttpPost]
         [ActionName("Verify")]
         public async Task<IActionResult> VerifyUserAsync([FromBody] VerifyRequestModel request)

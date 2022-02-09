@@ -7,6 +7,9 @@ using System.Text.Encodings.Web;
 
 namespace SectorControlApi.Security
 {
+    /// <summary>
+    /// Custom implementation of authentication handler for authenticating players.
+    /// </summary>
     public class UserAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         IUserService _userService;
@@ -35,6 +38,12 @@ namespace SectorControlApi.Security
 
         }
 
+        /// <summary>
+        /// Validates access token. 
+        /// </summary>
+        /// <returns>
+        /// Authentication result with custom claim type representing UserId.
+        /// </returns>
         private async Task<AuthenticateResult> ValidateTokenAsync(string token)
         {
 
@@ -45,7 +54,6 @@ namespace SectorControlApi.Security
             }
             var claims = new List<Claim>
                 {
-                //enum with type
                     new Claim(CustomClaimTypes.UserId, userId.ToString()),
                 };
 

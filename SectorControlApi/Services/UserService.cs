@@ -7,10 +7,10 @@ namespace SectorControlApi.Services
 {
     public class UserService : IUserService
     {
-        IConfiguration _configuration;
-        ILogService _logger;
-        IPasswordService _passwordService;
-        ILogService _logService;
+        private readonly IConfiguration _configuration;
+        private readonly ILogService _logger;
+        private readonly IPasswordService _passwordService;
+        private readonly ILogService _logService;
 
         public UserService(IConfiguration configuration, ILogService logger, IPasswordService passwordService, ILogService logService)
         {
